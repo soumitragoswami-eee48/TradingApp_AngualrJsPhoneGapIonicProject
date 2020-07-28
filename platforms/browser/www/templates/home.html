@@ -1,0 +1,89 @@
+<ion-view class="urjanet_title" title="Home">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-more" ng-click="showFilterPopover($event)"></button>
+    </ion-nav-buttons>
+
+    <ion-header-bar class="bar bar-stable bar-subheader item-input-inset">
+        <div class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input id="searchKey" type="search" placeholder="Search Trades" ng-model="searchTxt"
+                   autocorrect="off" ng-change="setFilter()">
+            <button class="button button-clear" ng-click="clear()">X</button>
+        </div>
+    </ion-header-bar>
+    <ion-toolbar>
+        <ion-tabs style="margin-bottom:30%" class="tabs-background-assertive tabs-color-light">
+
+            <ion-tab class ="urjanet_title" title="Pending Approval">
+                <ion-pane style="margin-top:250px;">
+
+                    <ion-list  style="margin-top:50%;" ng-show="!!login.result">
+
+                        <ion-item class="animate-repeat collapsible item-icon-right item-complex"
+                                  ng-class="{'collapsed': i.collapsed}"
+                                  ng-repeat="i in items">
+
+                            <span>{{i.customerId}}</span>
+                            <button ng-class="!i.collapsed ? 'ion-arrow-up-b' : ' ion-arrow-right-b'" ng-click="i.collapsed = !i.collapsed" class="button button-icon " style="padding-left:70%">
+                            </button> 
+
+
+                            <div ng-show="!i.collapsed" class="card card-wraper" >
+                                <ion-label>
+                                    <div class="item item-text-wrap">
+                                        {{i.loanAmount}}                        
+                                        {{i.customerId}}
+                                    </div>
+                                </ion-label>
+
+                                <ion-fab bottom right>
+                                    <ion-checkbox color="primary" style="padding-left:50% !important">Approve</ion-checkbox>
+                                </ion-fab>
+                            </div>
+
+                        </ion-item>
+                    </ion-list>
+
+                </ion-pane> 
+            </ion-tab>
+
+            <ion-tab class ="urjanet_title" title="Approved">
+                <ion-pane style="margin-top:300px">
+                    <ion-list ng-show="!!login.result">
+
+                        <ion-item class="animate-repeat collapsible item-icon-right item-complex"
+                                  ng-class="{'collapsed': i.collapsed}"
+                                  ng-repeat="i in items">
+
+                            <span>{{i.customerId}}</span>
+                            <button ng-class="!i.collapsed ? 'ion-arrow-up-b' : ' ion-arrow-right-b'" ng-click="i.collapsed = !i.collapsed" class="button button-icon " style="padding-left:70%">
+                            </button> 
+
+
+                            <div ng-show="!i.collapsed" class="card card-wraper" >
+                                <ion-label>
+                                    <div class="item item-text-wrap">
+                                        {{i.loanAmount}}                        
+                                        {{i.customerId}}
+                                    </div>
+                                </ion-label>
+
+                                <ion-fab bottom right>
+                                    <ion-checkbox color="primary" style="padding-left:50% !important">Approve</ion-checkbox>
+                                </ion-fab>
+                            </div>
+
+                        </ion-item>
+                    </ion-list>
+                </ion-pane>       
+                <!--                <ion-nav-view name="ingdts"></ion-nav-view>-->
+            </ion-tab>
+
+        </ion-tabs>
+    </ion-toolbar>
+</ion-view>
+
+</ion-view>

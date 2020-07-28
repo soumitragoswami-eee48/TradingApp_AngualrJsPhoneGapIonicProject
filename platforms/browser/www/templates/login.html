@@ -1,0 +1,100 @@
+<div class="modal">
+
+    <ion-nav-bar class="nav-title-slide-ios7 bar-positive">
+        <ion-nav-back-button class="button-icon ion-arrow-left-c">
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <!--     <ion-nav-view animation="slide-left-right"></ion-nav-view> -->
+    <ion-view view-title="">
+
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+
+
+        <ion-tabs class=" tabs-color-light">
+            <ion-tab class ="urjanet_title"  title="Login">
+                <ion-pane>
+<!--                    <ion-content class="padding">-->
+                        <ion-header-bar  class="bar-dark urjanet_title">
+                            <h1 class="title">Urjanet Trading Platform</h1>
+                        </ion-header-bar>
+                        <ion-content>
+                            <form>
+                                <div class="list">
+<!--                                    <label class="item item-input">
+                                        <span class="input-label">Username</span>
+                                        <input type="text" ng-model="loginData.username">
+                                    </label>-->
+                                    <label class="item item-input">
+                                        <span class="input-label">Phone No.</span>
+                                        <input type="text" ng-model="loginData.phoneNumber">
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">Password</span>
+                                        <input type="password" ng-model="loginData.password">
+                                    </label>
+                                    <label class="item btnLogin">
+                                        <button class="button button-full icon-left button-balanced ion-log-in btn" ng-click="doLogin()" type="submit">Sign in</button>
+                                    </label>
+                                    <label ng-model="loginMsg" class="padLbl" ng-class="{'assertive': !login.result,'balanced':login.result}">
+                                        {{loginMsg}}
+                                    </label>
+
+                                </div>
+                            </form>
+                        </ion-content>
+                    <!--</ion-content>-->
+                </ion-pane> 
+            </ion-tab>
+
+            <ion-tab class ="urjanet_title" title="Register">
+                 <ion-pane>
+<!--                    <ion-content class="padding">-->
+                        <ion-header-bar class="bar-dark urjanet_title">
+                            <h1 class="title">Urjanet Trading Platform</h1>
+                        </ion-header-bar>
+                        <ion-content>
+                            <form>
+                                <div class="list">
+                                    <label class="item item-input">
+                                        <span class="input-label">Username</span>
+                                        <input type="text" ng-model="loginData.username">
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">Phone Number</span>
+                                        <input type="text" ng-model="loginData.phoneNumber">
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">AA Handle</span>
+                                        <input type="text" ng-model="loginData.aaid">
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">Password</span>
+                                        <input type="password" ng-model="loginData.password">
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">Confirm Password</span>
+                                        <input type="password" ng-model="loginData.confirmPassword">
+                                    </label>
+                                    <label class="item btnLogin">
+                                        <button class="button button-full icon-left button-balanced ion-log-in btn btn-primary btn-raised" ng-click="doLogin()" type="submit">Sign Up</button>
+                                    </label>
+                                    <label ng-model="loginMsg" class="padLbl" ng-class="{'assertive': !login.result,'balanced':login.result}">
+                                        {{loginMsg}}
+                                    </label>
+
+                                </div>
+                            </form>
+                        </ion-content>
+                    <!--</ion-content>-->
+                </ion-pane>       
+<!--                <ion-nav-view name="ingdts"></ion-nav-view>-->
+            </ion-tab>
+
+        </ion-tabs>
+
+    </ion-view>
+
+</div>
