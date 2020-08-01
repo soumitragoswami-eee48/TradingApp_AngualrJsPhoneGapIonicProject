@@ -1,0 +1,54 @@
+{
+  "_from": "cordova-plugin-disable-nsapptransportsecurity",
+  "_id": "cordova-plugin-disable-nsapptransportsecurity@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-htFhT6jAx3oH5teQsdny+XxQhtY=",
+  "_location": "/cordova-plugin-disable-nsapptransportsecurity",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-disable-nsapptransportsecurity",
+    "name": "cordova-plugin-disable-nsapptransportsecurity",
+    "escapedName": "cordova-plugin-disable-nsapptransportsecurity",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-disable-nsapptransportsecurity/-/cordova-plugin-disable-nsapptransportsecurity-1.0.2.tgz",
+  "_shasum": "86d1614fa8c0c77a07e6d790b1d9f2f97c5086d6",
+  "_spec": "cordova-plugin-disable-nsapptransportsecurity",
+  "_where": "/home/soumitragoswami/Documents/hackathon/UrjanetTradingApp",
+  "author": {
+    "name": "Blake Israel"
+  },
+  "bugs": {
+    "url": "https://github.com/bisrael/cordova-plugin-disable-nsapptransportsecurity/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Disables NSAppTransportSecurity",
+  "homepage": "https://github.com/bisrael/cordova-plugin-disable-nsapptransportsecurity#readme",
+  "keywords": [
+    "cordova",
+    "ios9",
+    "NSAppTransportSecurity",
+    "NSAllowsArbitraryLoads",
+    "ssl"
+  ],
+  "license": "MIT",
+  "main": "",
+  "name": "cordova-plugin-disable-nsapptransportsecurity",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bisrael/cordova-plugin-disable-nsapptransportsecurity.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.2"
+}

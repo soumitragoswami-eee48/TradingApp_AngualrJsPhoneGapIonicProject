@@ -6,6 +6,12 @@
   "version": "org.urjanet.com",
   "description": "Hello World sample application that responds to the deviceready event.",
   "author": "PhoneGap Team",
-  "icons": [],
+  "icons": [
+    {
+      "src": "www/img/phonegap_wings.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
   "start_url": "index.html"
 }

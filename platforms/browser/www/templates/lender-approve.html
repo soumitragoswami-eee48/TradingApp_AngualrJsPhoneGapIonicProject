@@ -1,0 +1,80 @@
+<div class="modal">
+
+    <ion-nav-bar class="nav-title-slide-ios7 bar-positive">
+        <ion-nav-back-button class="button-icon ion-arrow-left-c">
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <!--     <ion-nav-view animation="slide-left-right"></ion-nav-view> -->
+    <ion-view view-title="">
+
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+
+
+        <ion-tabs class=" tabs-color-light">
+            
+            <ion-tab class ="urjanet_title" title="Approve Loan">
+                <ion-pane>
+                    <!--                    <ion-content class="padding">-->
+                    <ion-header-bar class="bar-dark urjanet_title">
+                        <button ng-click="closeApprove()" class="button button-icon icon ion-close-circled icon-right"></button>
+                        <h1 class="title">Urjanet Trading Platform</h1>
+                    </ion-header-bar>
+                    <ion-content>
+                        <div ng-show="!i.collapsed" style="margin-top: 20%" class="card card-wraper" >
+                            <ion-label>
+                                <h3>Approve Loan</h3>
+                            </ion-label>
+                            <form>
+                                <div class="list">
+                                    <label ng-hide="true" class="item item-input">
+                                        <span class="input-label">Lender Name</span>
+                                        <input type="text" ng-model="loginData.orgName">
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">Phone Number</span>
+                                        <input type="text" ng-model="loginData.phoneNumber">
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">Agreed Amount </span>
+                                        <input type="text" ng-model="approved.ammount" >
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">Agreed Rate of Interest(% PA) </span>
+                                        <input type="text" ng-model="approved.roi" >
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">Payback Period</span>
+                                        <input type="number" ng-model="approved.payback" >
+                                    </label>
+                                    <label class="item item-input">
+                                        <span class="input-label">Payback Duration</span>
+                                <select ng-init="tradeRequest.duration = 'Days'" ng-model="approved.duration">
+                                    <option>Days</option>
+                                    <option>Months</option>
+                                    <option>Years</option>
+                                </select>
+                                    </label>
+                                    <label class="item btnLogin">
+                                        <button class="button button-full icon-left button-balanced  btn btn-primary btn-raised" ng-click="approve({{meta.index}},approval)" type="submit">Approve</button>
+                                    </label>
+<!--                                    <label ng-model="registerMsg" class="padLbl" ng-class="{'assertive': !register_result,'balanced':register_result}">
+                                        {{registerMsg}}
+                                    </label>-->
+
+                                </div>
+                            </form>
+                        </div>
+                    </ion-content>
+                    <!--</ion-content>-->
+                </ion-pane>       
+                <!--                <ion-nav-view name="ingdts"></ion-nav-view>-->
+            </ion-tab>
+
+        </ion-tabs>
+
+    </ion-view>
+
+</div>

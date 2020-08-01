@@ -19,15 +19,19 @@
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close href="#/app/home">
             <i class="icon ion-document-text"></i>
-          Home
+          Home 
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close href="#/app/favorites">
-            <i class="icon ion-heart"></i>
-          Favorites
+         <ion-item ng-show="loginData.role == 'ROLE_CUSTOMER'" class="item-icon-left" nav-clear menu-close href="#/app/accepted-proposals">
+            <i class="icon ion-document-text"></i>
+          Proposals
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close href="#/app/profile">
-            <i class="icon ion-person"></i>
-          Profile
+        <ion-item ng-show="loginData.role !== 'ROLE_CUSTOMER'" class="item-icon-left" nav-clear menu-close href="#/app/categories">
+            <i class="icon ion-funnel"></i>
+          Search Categories
+        </ion-item>
+        <ion-item ng-show="loginData.role == 'ROLE_CUSTOMER'" class="item-icon-left" nav-clear menu-close href="#/app/profile">
+            <i class="icon ion-link"></i>
+          Link AA
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ng-click="logout()">
             <i class="icon ion-log-out"></i>

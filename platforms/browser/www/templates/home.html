@@ -6,41 +6,74 @@
         <button class="button button-icon icon ion-more" ng-click="showFilterPopover($event)"></button>
     </ion-nav-buttons>
 
-    <ion-header-bar class="bar bar-stable bar-subheader item-input-inset">
-        <div class="item-input-wrapper">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input id="searchKey" type="search" placeholder="Search Trades" ng-model="searchTxt"
-                   autocorrect="off" ng-change="setFilter()">
-            <button class="button button-clear" ng-click="clear()">X</button>
-        </div>
-    </ion-header-bar>
-    <ion-toolbar>
+
+    <ion-toolbar ng-if="loginData.role === 'ROLE_LENDER'">
         <ion-tabs style="margin-bottom:30%" class="tabs-background-assertive tabs-color-light">
 
-            <ion-tab class ="urjanet_title" title="Pending Approval">
+            <ion-tab class ="urjanet_title" ng-click="pendingItems = pendingItemsOrig;" title="Pending Approval">
+                <ion-header-bar ng-if="loginData.role === 'ROLE_LENDER'" class="bar bar-stable bar-subheader item-input-inset">
+                    <h1>Preset Search Filters: </h1>
+
+                    <div class="item-input-wrapper">
+                        <button class="button button-full icon-left button-balanced  btn " ng-click="searchPendingReset()" type="submit">Reset Search</button>
+                    </div>
+                </ion-header-bar>
+                <br>
+                <br>
+                <br>
+                <div class="item-input-wrapper">
+                    <div class="item-input-wrapper">
+                        <button class="button button-full icon-left button-balanced ion-funnel btn " ng-click="searchPending('category1')" type="submit">Category 1</button>
+                    </div>
+                    <div class="item-input-wrapper">
+                        <button class="button button-full icon-left button-balanced ion-funnel btn " ng-click="searchPending('category2')" type="submit">Category 2</button>
+                    </div>
+                    <div class="item-input-wrapper">
+                        <button class="button button-full icon-left button-balanced ion-funnel btn " ng-click="searchPending('category3')" type="submit">Category 3</button>
+                    </div>
+                </div>
+
+
                 <ion-pane style="margin-top:250px;">
 
                     <ion-list  style="margin-top:50%;" ng-show="!!login.result">
 
                         <ion-item class="animate-repeat collapsible item-icon-right item-complex"
                                   ng-class="{'collapsed': i.collapsed}"
-                                  ng-repeat="i in items">
+                                  ng-repeat="i in pendingItems track by $index">
 
-                            <span>{{i.customerId}}</span>
-                            <button ng-class="!i.collapsed ? 'ion-arrow-up-b' : ' ion-arrow-right-b'" ng-click="i.collapsed = !i.collapsed" class="button button-icon " style="padding-left:70%">
+                            <span style="overflow: hidden; text-overflow: ellipsis;">{{ i.username}}</span>
+                            <button ng-class="!i.collapsed ? 'ion-arrow-up-b' : ' ion-arrow-right-b'" ng-click="i.collapsed = !i.collapsed" class="button button-icon " style="padding-left:40%">
                             </button> 
 
 
                             <div ng-show="!i.collapsed" class="card card-wraper" >
                                 <ion-label>
                                     <div class="item item-text-wrap">
-                                        {{i.loanAmount}}                        
-                                        {{i.customerId}}
+                                        <div class="list">
+                                            <label class="item item-input">
+                                                <span class="input-label">Loan Amount</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.loanAmount">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">Loan Type</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.loanType">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">Phone Number</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.customerId">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">City</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.city">
+                                            </label>
+                                        </div>
+
                                     </div>
                                 </ion-label>
 
                                 <ion-fab bottom right>
-                                    <ion-checkbox color="primary" style="padding-left:50% !important">Approve</ion-checkbox>
+                                    <ion-checkbox color="primary" ng-click="showApprove({{$index}})"  ng-disabled="{{pendingItems[i].approve}}" style="padding-left:50% !important">Approve</ion-checkbox>
                                 </ion-fab>
                             </div>
 
@@ -50,29 +83,68 @@
                 </ion-pane> 
             </ion-tab>
 
-            <ion-tab class ="urjanet_title" title="Approved">
+            <ion-tab class ="urjanet_title"  title="Approved">
+                <ion-header-bar ng-if="loginData.role === 'ROLE_LENDER'" class="bar bar-stable bar-subheader item-input-inset">
+                    <h1>Preset Search Filters: </h1>
+
+                    <div class="item-input-wrapper">
+                        <button class="button button-full icon-left button-balanced  btn " ng-click="searchPendingReset()" type="submit">Reset Search</button>
+                    </div>
+                </ion-header-bar>
+                <br>
+                <br>
+                <br>
+                <div class="item-input-wrapper">
+                    <div class="item-input-wrapper">
+                        <button class="button button-full icon-left button-balanced ion-funnel btn " ng-click="searchApproved('category1')" type="submit">Category 1</button>
+                    </div>
+                    <div class="item-input-wrapper">
+                        <button class="button button-full icon-left button-balanced ion-funnel btn " ng-click="searchApproved('category2')" type="submit">Category 2</button>
+                    </div>
+                    <div class="item-input-wrapper">
+                        <button class="button button-full icon-left button-balanced ion-funnel btn " ng-click="searchApproved('category3')" type="submit">Category 3</button>
+                    </div>
+                </div>
+
                 <ion-pane style="margin-top:300px">
                     <ion-list ng-show="!!login.result">
 
                         <ion-item class="animate-repeat collapsible item-icon-right item-complex"
                                   ng-class="{'collapsed': i.collapsed}"
-                                  ng-repeat="i in items">
+                                  ng-repeat="i in approvedItems">
 
-                            <span>{{i.customerId}}</span>
-                            <button ng-class="!i.collapsed ? 'ion-arrow-up-b' : ' ion-arrow-right-b'" ng-click="i.collapsed = !i.collapsed" class="button button-icon " style="padding-left:70%">
+                            <span>{{ i.username}}</span>
+                            <button ng-class="!i.collapsed ? 'ion-arrow-up-b' : ' ion-arrow-right-b'" ng-click="i.collapsed = !i.collapsed" class="button button-icon " style="padding-left:60%">
                             </button> 
 
 
                             <div ng-show="!i.collapsed" class="card card-wraper" >
                                 <ion-label>
                                     <div class="item item-text-wrap">
-                                        {{i.loanAmount}}                        
-                                        {{i.customerId}}
+                                        <div class="list">
+                                            <label class="item item-input">
+                                                <span class="input-label">Loan Amount</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.loanAmount">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">Loan Type</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.loanType">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">Phone Number</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.customerId">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">City</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.city">
+                                            </label>
+                                        </div>
+
                                     </div>
                                 </ion-label>
 
                                 <ion-fab bottom right>
-                                    <ion-checkbox color="primary" style="padding-left:50% !important">Approve</ion-checkbox>
+                                    <!--                                    <h4 ng-if="$scope."></h4>-->
                                 </ion-fab>
                             </div>
 
@@ -84,6 +156,70 @@
 
         </ion-tabs>
     </ion-toolbar>
-</ion-view>
+    <ion-content  style="margin-top: 20%" ng-if="loginData.role == 'ROLE_CUSTOMER' && !loginData.givenConsent" >
+        <ion-list>
+            <ion-item  href="#/app/profile">
+                <h3>Please Link your AA with us to place Trade Request.</h3>
+                <h4><a>(Contact Administrator to know consent status,<br> if request is already raised)</a></h4>
+                <i class="icon ion-link"></i>
+                Link AA
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-content ng-if="loginData.role == 'ROLE_CUSTOMER' && loginData.givenConsent">
+        <div  style="margin-top: 20%" class="card card-wraper" >
+            <ion-label>
+                <h3>Apply For Loan</h3>
+            </ion-label>
+            <ion-card>
+                <!--                <div class="card-title">Trade</div>-->
+                <div class="card-wraper">
+                    <form>
+
+                        <div class="list">
+                            <label class="item item-input">
+                                <span class="input-label">Phone No.</span>
+                                <input ng-disabled="true" type="text" ng-model="loginData.phoneNumber">
+                            </label>
+                            <label class="item item-input">
+                                <span class="input-label">Loan Amount</span>
+                                <input type="number" min="0" ng-model="tradeRequest.loanAmount">
+                            </label>
+                            <label class="item item-input">
+                                <span class="input-label">Loan Tenure</span>
+                                <input type="text" ng-model="tradeRequest.period">
+                            </label>
+                            <label class="item item-input">
+                                <span class="input-label">Tenure Interval</span>
+                                <select ng-init="tradeRequest.duration = 'Days'" ng-model="tradeRequest.duration">
+                                    <option>Days</option>
+                                    <option>Months</option>
+                                    <option>Years</option>
+                                </select>
+                            </label>
+                            <label class="item item-input">
+                                <span class="input-label">Loan Type</span>
+                                <select ng-model="tradeRequest.loanType" ng-init="tradeRequest.loanType = 'Unsecured Personal Loan'">
+                                    <option>Unsecured Personal Loan</option>
+                                    <option>Unsecured Business Loan</option>
+                                </select>
+                            </label>
+
+                            <label class="item btnLogin">
+                                <button class="button button-full icon-left button-balanced ion-filing  btn" ng-click="requestTrade()" type="submit">Apply</button>
+                            </label>
+                        </div>
+                        <label ng-model="tradeRequestMsg" class="padLbl" ng-class="{'assertive': !tradeRequest_result,'balanced':tradeRequest_result}">
+                            {{tradeRequestMsg}}
+                        </label>
+                    </form>
+                </div>
+                <!--                    <div class="card-subtitle">41 Listings</div>-->
+            </ion-card>
+
+
+        </div>
+    </ion-content>
 
 </ion-view>
+

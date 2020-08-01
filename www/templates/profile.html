@@ -1,17 +1,58 @@
-<ion-view title="Profile">
+<ion-view class="urjanet_title" title="Profile">
     <ion-nav-buttons side="left">
-      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-more" ng-click="showFilterPopover($event)"></button>
     </ion-nav-buttons>
 
-    <ion-content class="has-header">
-        <div class="list card">
-            <div class="item stable-bg">
-                <h2>{{user.name}}</h2>
-                <p>{{user.email}}</p>
+
+    <ion-content>
+        <div ng-show="!i.collapsed" style="margin-top: 20%" class="card card-wraper" >
+            <ion-label>
+                <h3>Link AA Handle</h3>
+            </ion-label>
+
+            <div ng-show="!consent_result">
+                <form>
+
+                    <div class="list">
+                        <label class="item item-input">
+                            <span class="input-label">Phone No.</span>
+                            <input ng-disabled="true" type="text" ng-model="loginData.phoneNumber">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">AA Handle</span>
+                            <input type="text" ng-model="consentObj.aaid">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Loan Period</span>
+                            <input type="text" ng-model="consentObj.period">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Consent Interval</span>
+                            <select ng-init="consentObj.duration = 'Days'" ng-model="consentObj.duration">
+                                <option>Days</option>
+                                <option>Months</option>
+                            </select>
+                        </label>
+                        <label class="item btnLogin">
+                            <button class="button button-full icon-left button-balanced ion-link  btn" ng-click="requestConsent()" type="submit">Link Data</button>
+                        </label>
+                    </div>
+                    <label ng-model="consentMsg" class="padLbl" ng-class="{'assertive': !consent_result,'balanced':consent_result}">
+                        {{consentMsg}}
+                    </label>
+                </form>
             </div>
-            <div class="item item-body">
-                <img class="pic" ng-src="{{user.pic}}"/>
+            <div ng-show="consent_result">
+                <ion-card>
+                    <img style=" max-width: 100%;max-height: 100%;" src="img/green_tick.gif"/>
+                    <div class="card-title">{{consentMsg}}</div>
+<!--                    <div class="card-subtitle">41 Listings</div>-->
+                </ion-card>
             </div>
         </div>
     </ion-content>
 </ion-view>
+

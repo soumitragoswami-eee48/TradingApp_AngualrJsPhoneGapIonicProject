@@ -1,0 +1,61 @@
+<ion-view class="urjanet_title" title="Categories">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-more" ng-click="showFilterPopover($event)"></button>
+    </ion-nav-buttons>
+    
+    
+    
+    <ion-content class="has-header">
+<!--        <p class="padLbl" ng-show="categories.length === 0">No search categories have been added yet.</p>-->
+        <ion-list ng-show="!!login.result">
+
+            <ion-item class="animate-repeat collapsible item-icon-right item-complex"
+                      ng-class="{'collapsed': i.collapsed}"
+                      ng-repeat="i in categories">
+
+                <span>{{ i.filter_name}}</span>
+                <button ng-class="!i.collapsed ? 'ion-arrow-up-b' : ' ion-arrow-right-b'" ng-click="i.collapsed = !i.collapsed" class="button button-icon " style="padding-left:70%">
+                </button> 
+
+
+                <div ng-show="!i.collapsed" class="card card-wraper" >
+                    <ion-label>
+                        <div class="item item-text-wrap">
+                            <div class="list">
+                                <label class="item item-input">
+                                    <span class="input-label">Category:</span>
+                                    <input ng-disabled="!i.isEdit" type="text" ng-model="i.filter_name">
+                                </label>
+                                <label class="item item-input">
+                                    <span class="input-label">Minimum Loan Amount</span>
+                                    <input ng-disabled="!i.isEdit" type="text" ng-model="i.loan_amount_min">
+                                </label>
+                                <label class="item item-input">
+                                    <span class="input-label">Min Average Monthly Balance</span>
+                                    <input ng-disabled="!i.isEdit" type="text" ng-model="i.average_monthly_balance_min">
+                                </label>
+                                <label class="item item-input">
+                                    <span class="input-label">Successive Salary Credits</span>
+                                    <input ng-disabled="!i.isEdit" type="text" ng-model="i.successive_salary_credits_count">
+                                </label>
+                                 <label class="item item-input">
+                                    <span class="input-label">EMI/Check Bounce Lesser than</span>
+                                    <input ng-disabled="!i.isEdit" type="text" ng-model="i.emi_or_check_bounces_count">
+                                </label>
+                            </div>
+
+                        </div>
+                    </ion-label>
+                    <ion-fab bottom right>
+                        <button class="button icon-left button-balanced ion-edit btn btn-primary btn-raised" ng-click="i.isEdit=!i.isEdit" type="submit">{{i.isEdit?'Save':'Edit'}}</button>
+<!--                        <ion-checkbox color="primary" style="padding-left:50% !important"></ion-checkbox>-->
+                    </ion-fab>
+                </div>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,131 @@
+<ion-view class="urjanet_title" title="Proposals">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-more" ng-click="showFilterPopover($event)"></button>
+    </ion-nav-buttons>
+
+
+    <ion-toolbar ng-if="loginData.role === 'ROLE_CUSTOMER'">
+        <ion-tabs style="margin-bottom:30%" class="tabs-background-assertive tabs-color-light">
+
+            <ion-tab class ="urjanet_title" ng-click="pendingItems = pendingItemsOrig;" title="Pending Approval">
+
+                <ion-pane style="margin-top:250px;">
+
+                    <ion-list  style="margin-top:50%;" ng-show="!!login.result">
+
+                        <ion-item class="animate-repeat collapsible item-icon-right item-complex"
+                                  ng-class="{'collapsed': i.collapsed}"
+                                  ng-repeat="i in proposalItems track by $index">
+
+                            <span>{{ i.loanType}}</span>
+                            <button ng-class="!i.collapsed ? 'ion-arrow-up-b' : ' ion-arrow-right-b'" ng-click="i.collapsed = !i.collapsed" class="button button-icon " style="padding-left:60%">
+                            </button> 
+
+
+                            <div ng-show="!i.collapsed" class="card card-wraper" >
+                                <ion-label>
+                                    <div class="item item-text-wrap">
+                                        <div class="list">
+                                            <label class="item item-input">
+                                                <span class="input-label">Loan Amount</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.loanAmount">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">Loan Type</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.loanType">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">Phone Number</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.customerId">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">City</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.city">
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </ion-label>
+                            </div>
+
+                        </ion-item>
+                    </ion-list>
+
+                </ion-pane> 
+            </ion-tab>
+
+            <ion-tab class ="urjanet_title"  title="Offers">
+
+                <ion-pane style="margin-top:300px">
+                    <ion-list ng-show="!!login.result">
+
+                        <ion-item class="animate-repeat collapsible item-icon-right item-complex"
+                                  ng-class="{'collapsed': i.collapsed}"
+                                  ng-show="!accepted"
+                                  ng-repeat="i in approvedList| customerId">
+
+                            <span>{{ i.orgName}}</span>
+                            <button ng-class="!i.collapsed ? 'ion-arrow-up-b' : ' ion-arrow-right-b'" ng-click="i.collapsed = !i.collapsed" class="button button-icon " style="padding-left:60%">
+                            </button> 
+
+
+                            <div ng-show="!i.collapsed" class="card card-wraper" >
+                                <ion-label>
+                                    <div class="item item-text-wrap">
+                                        <div class="list">
+                                            <label class="item item-input">
+                                                <span class="input-label">Loan Amount</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.tradeRequest.loanAmount">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">Loan Type</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.tradeRequest.loanType">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">PayBack Tenure</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.paybackTenure">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">PayBack Duration</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.payBackDuration">
+                                            </label>
+                                            <label class="item item-input">
+                                                <span class="input-label">City</span>
+                                                <input ng-disabled="true" type="text" ng-model="i.tradeRequest.city">
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </ion-label>
+                                <ion-fab bottom right>
+                                    <ion-checkbox color="primary" ng-click="showAccept({{$index}})"  style="padding-left:50% !important">Accept Offer and Proceed</ion-checkbox>
+                                </ion-fab>
+
+                                <ion-fab bottom right>
+                                    <!--                                    <h4 ng-if="$scope."></h4>-->
+                                </ion-fab>
+                            </div>
+
+                        </ion-item>
+                    </ion-list>
+                    <div ng-show="accepted">
+                        <ion-card>
+                            <img style=" max-width: 100%;max-height: 100%;" src="img/green_tick.gif"/>
+                            <div class="card-title">Congratulations,your loan application has been approved!</div>
+                            <div class="card-title">Reference Number : UTP0108200001555</div>
+                            <a href="google.com">Please click here to go the Bank website and proceed with the loan</a>
+                            <!--                    <div class="card-subtitle">41 Listings</div>-->
+                        </ion-card>
+                    </div>
+
+                </ion-pane>       
+            </ion-tab>
+
+        </ion-tabs>
+    </ion-toolbar>
+
+</ion-view>
+
