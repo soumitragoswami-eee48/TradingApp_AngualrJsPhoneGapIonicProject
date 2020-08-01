@@ -1,69 +1,34 @@
-# Hello World PhoneGap Template [![bitHound Score][bithound-img]][bithound-url]
+# PhoneGap App Template 
 
-A PhoneGap Hello World template
-
+A PhoneGap Ionic App using Angular Js
 ## Usage
 
 #### PhoneGap CLI
 
-The hello-world template is the default when you create a new application using the [phonegap-cli][phonegap-cli-url].
+Pre-requisites:
+1) install phonegap cli (-v : 9.0.0 for Ubuntu , alternatively use phonegap App for Windows/Mac and create a hello world app and replace www folder and config.xml from this process)
+2) node version (>10.15.3 - nvm install 10.15.3
+3) cd into project directory and run -  phonegap build
+4) run - phonegap serve ( or phonegap app , add "-d" at the end to see debug logs - for ex: phonegap app -d )
+5) if the App starts up, you should something like :
 
-    phonegap create my-app
+    [phonegap] starting app server...
+    [phonegap] listening on 192.168.43.202:3000
+    [phonegap] 
+    [phonegap] ctrl-c to stop the server
+    
+    this has autoreload enabled by default, so any changes done wil reflect in the web pages in real time 
+    
+  the pages can be viewed by hitting this url in the browser
+  for running in mobile - 
+  1) download the PhoneGap Developer App in your device from Google Store
+  2) connect the phone to the same network on which the laptop with the phonegap app running is on
+  3) disable firewall - sudo ufw disable (for Ubuntu) 
+  4) Enter the same url and port used for web view in the developer app, if everything goes fine, the view wil load in the app
+  
+  This app is made for a Hackathon Submission to sahamati.org and utilises the Account Aggregator apis to provide a seamless loan application for End users. The backend code can be cloned from here - https://github.com/Mathivanan-Paulraj/AAHackathon 
+  
+  
+  
 
-Create an app using this template specifically:
-
-    phonegap create my-app --template hello-world
-
-To see a list of other available PhoneGap templates:
-
-    phonegap template list
-
-## [config.xml][config-xml]
-
-#### android-minSdkVersion (Android only)
-
-Minimum SDK version supported on the target device. Maximum version is blank by default.
-
-This template sets the minimum to `14`.
-
-    <preference name="android-minSdkVersion" value="14" />
-
-#### &lt;access ...&gt; (All)
-
-This template defaults to wide open access.
-
-    <access origin="*" />
-
-It is strongly encouraged that you restrict access to external resources in your application before releasing to production.
-
-For more information on whitelist configuration, see the [Cordova Whitelist Guide][cordova-whitelist-guide] and the [Cordova Whitelist Plugin documentation][cordova-plugin-whitelist]
-
-## [www/index.html][index-html]
-
-#### Content Security Policy (CSP)
-
-The default CSP is similarly open:
-
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-
-Much like the access tag above, you are strongly encouraged to use a more restrictive CSP in production.
-
-A good starting point declaration might be:
-
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" />
-
-For more information on the Content Security Policy, see the [section on CSP in the Cordova Whitelist Plugin documentation][cordova-plugin-whitelist-csp].
-
-Another good resource for generating a good CSP declaration is [CSP is Awesome][csp-is-awesome]
-
-
-[phonegap-cli-url]: http://github.com/phonegap/phonegap-cli
-[cordova-app]: http://github.com/apache/cordova-app-hello-world
-[bithound-img]: https://www.bithound.io/github/phonegap/phonegap-app-hello-world/badges/score.svg
-[bithound-url]: https://www.bithound.io/github/phonegap/phonegap-app-hello-world
-[config-xml]: https://github.com/phonegap/phonegap-template-hello-world/blob/master/config.xml
-[index-html]: https://github.com/phonegap/phonegap-template-hello-world/blob/master/www/index.html
-[cordova-whitelist-guide]: https://cordova.apache.org/docs/en/dev/guide/appdev/whitelist/index.html
-[cordova-plugin-whitelist]: http://cordova.apache.org/docs/en/latest/reference/cordova-plugin-whitelist
-[cordova-plugin-whitelist-csp]: http://cordova.apache.org/docs/en/latest/reference/cordova-plugin-whitelist#content-security-policy
-[csp-is-awesome]: http://cspisawesome.com
+   
